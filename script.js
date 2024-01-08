@@ -107,8 +107,12 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-var newPassword = ""
+// password options
 var lengthOfPassword = 0
+var characterType_Lowercase = false
+var characterType_Uppercase = false
+var characterType_Numeric = false
+var characterType_SpecialCharacters = false
 
 
 
@@ -116,14 +120,14 @@ var lengthOfPassword = 0
 // -----------------
 
 
-// Main Function - Write password to the #password input
+// MAIN Function - Write password to the #password input
 // note : this function is triggered by the event handler for the "generate" button
 function writePassword() {
 
   // Get Password Options from the User
   getPasswordOptions()
 
-  // Generate a New Password
+  // Generate a New Password using the Password Options
   var password = generatePassword();
 
   // Display the New Password on the Webpage (textarea id="password")
@@ -140,39 +144,68 @@ function getPasswordOptions() {
 
   var userInput = ""
 
-  // (1) Ask user what Length the new password should be 
-  // - must be least 8 characters but no more than 128
-  // - repeat prompting user until a valid length is entered
+  // (1) Ask user what LENGTH the new password should be 
+  // - user must enter a length of at least 8 characters but no more than 128
+  // - keep prompting user until a valid length is entered
   while(lengthOfPassword === 0) {
 
-    // get input
+    // Get user input
     userInput = prompt("Please enter the Length of the new password (between 8 and 128)")
-    if (userInput != false){
-      alert("TEST")
-      // userInput = userInput.trim()
-    }
 
-    // validate input
+    // Validate user input
     if (userInput &&  isNaN(userInput)) {
-
-      // user did not enter a number
+      // - user ented a string that is not a number
       alert("'" + userInput + "' is not a valid Length as it is not a number")
-
+    }
+    else if (userInput.trim() == "") {
+      // - user entered nothing
+      alert("You didnt enter a value.")
     }
     else if (userInput === null) {
-     
-      alert("USER PRESSED CANCEL")
-
+      // - user pressed cancel
+      alert("You pressed Cancel.")
     }
     else {
-      alert("'" + userInput + "' IS A NUMBER")
+
+      // - user entered a number - this must be checked to ensure it is between 8 and 128 (inclusive)
+      if (userInput < 8) {
+        // number is too high
+        alert("You entered " + userInput + ". Length must not be less than 8")
+      } 
+      else if (userInput > 128){
+        // number is too low
+        alert("You entered " + userInput + ". Length must not be more than 128")
+      }
+      else {
+        // number is valid - SET USER INPUT AS THE LENGTH OF PASSWORD
+        lengthOfPassword = userInput
+      }
+      
     }
-    
-
-    lengthOfPassword = 99
-
   }
 
+  // (2) Ask user what CHARACTER TYPES the new password should use 
+  // - user must select at least one character type
+  // - keep prompting user until at least one character type is selected
+  var characterTypesSelected = false
+  while(characterTypesSelected == false) {
+
+    // Get user input
+    if (confirm("Include Lowercase?")){characterType_Lowercase = true}
+    if (confirm("Include Uppercase?")){characterType_Uppercase = true}
+    if (confirm("Include Numeric?")){characterType_Numeric = true}
+    if (confirm("Include Special Characters ($@%&*, etc)?")){characterType_SpecialCharacters = true}
+
+    // Validate user input
+    if (characterType_Lowercase == false && characterType_Uppercase == false && 
+    characterType_Numeric == false && characterType_SpecialCharacters == false){
+        alert("Please select at least one Chracter Type")
+    }
+    else{
+      characterTypesSelected = true  
+    }
+
+  }
 
 }
 
@@ -180,6 +213,9 @@ function getPasswordOptions() {
 // Generate password with user input
 function generatePassword() {
 
+  var newPassword = "TEST PASSWORD"
+
+  return newPassword
 
 }
 
