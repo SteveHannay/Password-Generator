@@ -107,12 +107,12 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// password options
-var lengthOfPassword = 0
-var characterType_Lowercase = false
-var characterType_Uppercase = false
-var characterType_Numeric = false
-var characterType_SpecialCharacters = false
+// variables for user selections
+var lengthOfPassword 
+var characterType_Lowercase 
+var characterType_Uppercase 
+var characterType_Numeric 
+var characterType_SpecialCharacters
 
 
 
@@ -124,6 +124,13 @@ var characterType_SpecialCharacters = false
 // note : this function is triggered by the event handler for the "generate" button
 function writePassword() {
 
+  // initialise variables 
+  lengthOfPassword = 0
+  characterType_Lowercase = false
+  characterType_Uppercase = false
+  characterType_Numeric = false
+  characterType_SpecialCharacters = false
+
   // Get Password Options from the User
   getPasswordOptions()
 
@@ -134,7 +141,7 @@ function writePassword() {
   var passwordText = document.querySelector('#password');
   passwordText.value = password;
 
-  alert("writePassword function completed")
+  alert("Your new password = " + password)
 
 }
 
@@ -210,40 +217,40 @@ function getPasswordOptions() {
 }
 
 
-// Generate password with user input
+// Generate password from user input
 function generatePassword() {
 
   var searchArray = []
   var newPassword = ""
+  var newCharacter = ""
 
-  // Create an array of all the possible character 
-  if (characterType_Lowercase = true) {
+  // Create an array of all the possible characters
+  if (characterType_Lowercase == true) {
     searchArray = lowerCasedCharacters
   }
-
-  if (characterType_Uppercase = true) {
+  if (characterType_Uppercase == true) {
     searchArray = searchArray.concat(upperCasedCharacters)
   }
-
-  if (characterType_Numeric = true) {
+  if (characterType_Numeric == true) {
     searchArray = searchArray.concat(numericCharacters)
   }
-
-  if (characterType_SpecialCharacters = true) {
-    searchArray = searchArray.concat(specialCharactersCharacters)
+  if (characterType_SpecialCharacters == true) {
+    searchArray = searchArray.concat(specialCharacters)
   }
-
-  console.log(searchArray)
+  console.log(searchArray) // for debugging
 
 
   // Repeat for the Length of the new password
   for (let i = 1; i <= (lengthOfPassword); i++) {
 
-    newPassword = newPassword + "" +  i + ","
+    // return a random character from the search array
+    newCharacter = getRandom(searchArray)
+
+    // concatonate the random character to form the new password
+    newPassword = newPassword + newCharacter
     
   }
 
-  
   // Return the new password
   return newPassword
 
@@ -255,9 +262,9 @@ function generatePassword() {
 // -----------------
 
 
-// Get a random element from an array
+// Return the value of a random element from an array
 function getRandom(arr) {
-
+  return arr[Math.floor(Math.random()*arr.length)];
 }
 
 
