@@ -3,12 +3,26 @@
     Developer - Steve Hannay 
     First Created - 5th January 2024
 
-    The following code generates a new Password when the user clicks on the webpages "Generate Password" button
+    The following code generates a new Password when the user clicks on the webpages "Generate Password" button :
 
     - The user is prompted to select various criteria for a new password (using altert/prompt/confirm).
     - The user input is validated before being accepted. 
     - A new password is generated using the criteria entered by the user together with random character selection.
     - The newly generated password is displayed to the user on the webpage (textarea id="password")
+
+    The requirements specified for the Challenge are as follows :
+
+    * Generate a password when the button is clicked
+    * Present a series of prompts for password criteria
+    * Length of password
+      * At least 8 characters but no more than 128.
+      * Character types
+      * Lowercase
+      * Uppercase
+      * Numeric
+      * Special characters ($@%&*, etc)
+    * Code should validate for each input and at least one character type should be selected
+    * Once prompts are answered then the password should be generated and displayed in an alert or written to the page
 */
 
 
@@ -124,7 +138,7 @@ var characterType_SpecialCharacters
 // note : this function is triggered by the event handler for the "generate" button
 function writePassword() {
 
-  // initialise variables 
+  // Initialise variables and reset screen
   lengthOfPassword = 0
   characterType_Lowercase = false
   characterType_Uppercase = false
@@ -137,7 +151,7 @@ function writePassword() {
   // Generate a New Password using the Password Options
   var password = generatePassword();
 
-  // Display the New Password on the Webpage (textarea id="password")
+  // Display the New Password on the Webpage (textarea id="password") and using an Alert
   var passwordText = document.querySelector('#password');
   passwordText.value = password;
 
@@ -238,7 +252,6 @@ function generatePassword() {
     searchArray = searchArray.concat(specialCharacters)
   }
   console.log(searchArray) // for debugging
-
 
   // Repeat for the Length of the new password
   for (let i = 1; i <= (lengthOfPassword); i++) {
