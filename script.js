@@ -190,7 +190,7 @@ function getPasswordOptions() {
   var characterTypesSelected = false
   while(characterTypesSelected == false) {
 
-    // Get user input
+    // Get user input and set character types
     if (confirm("Include Lowercase?")){characterType_Lowercase = true}
     if (confirm("Include Uppercase?")){characterType_Uppercase = true}
     if (confirm("Include Numeric?")){characterType_Numeric = true}
@@ -213,8 +213,38 @@ function getPasswordOptions() {
 // Generate password with user input
 function generatePassword() {
 
-  var newPassword = "TEST PASSWORD"
+  var searchArray = []
+  var newPassword = ""
 
+  // Create an array of all the possible character 
+  if (characterType_Lowercase = true) {
+    searchArray = lowerCasedCharacters
+  }
+
+  if (characterType_Uppercase = true) {
+    searchArray = searchArray.concat(upperCasedCharacters)
+  }
+
+  if (characterType_Numeric = true) {
+    searchArray = searchArray.concat(numericCharacters)
+  }
+
+  if (characterType_SpecialCharacters = true) {
+    searchArray = searchArray.concat(specialCharactersCharacters)
+  }
+
+  console.log(searchArray)
+
+
+  // Repeat for the Length of the new password
+  for (let i = 1; i <= (lengthOfPassword); i++) {
+
+    newPassword = newPassword + "" +  i + ","
+    
+  }
+
+  
+  // Return the new password
   return newPassword
 
 }
