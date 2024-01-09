@@ -16,7 +16,7 @@
     * Present a series of prompts for password criteria
     * Length of password
       * At least 8 characters but no more than 128.
-      * Character types
+    * Character types
       * Lowercase
       * Uppercase
       * Numeric
