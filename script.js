@@ -107,7 +107,7 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// variables for user selections
+// Variables for user selections
 var lengthOfPassword 
 var characterType_Lowercase 
 var characterType_Uppercase 
@@ -222,7 +222,7 @@ function generatePassword() {
 
   var searchArray = []
   var newPassword = ""
-  var newCharacter = ""
+  var randomCharacter = ""
 
   // Create an array of all the possible characters
   if (characterType_Lowercase == true) {
@@ -244,10 +244,10 @@ function generatePassword() {
   for (let i = 1; i <= (lengthOfPassword); i++) {
 
     // return a random character from the search array
-    newCharacter = getRandom(searchArray)
+    randomCharacter = getRandom(searchArray)
 
     // concatonate the random character to form the new password
-    newPassword = newPassword + newCharacter
+    newPassword = newPassword + randomCharacter
     
   }
 
